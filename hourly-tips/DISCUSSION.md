@@ -1,29 +1,8 @@
-<!--
-Licensed to the Apache Software Foundation (ASF) under one
-or more contributor license agreements.  See the NOTICE file
-distributed with this work for additional information
-regarding copyright ownership.  The ASF licenses this file
-to you under the Apache License, Version 2.0 (the
-"License"); you may not use this file except in compliance
-with the License.  You may obtain a copy of the License at
-
-  http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing,
-software distributed under the License is distributed on an
-"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, either express or implied.  See the License for the
-specific language governing permissions and limitations
-under the License.
--->
-
-[中文版](./DISCUSSION_zh.md)
-
 # Lab Discussion: Windowed Analytics (Hourly Tips)
 
 (Discussion of [Lab: Windowed Analytics (Hourly Tips)](./))
 
-The Java and Scala reference solutions illustrate two different approaches, though they have a lot of similarities. Both first compute the sum of the tips for every hour for each driver. In [`HourlyTipsSolution.java`](src/solution/java/org/apache/flink/training/solutions/hourlytips/HourlyTipsSolution.java) that looks like this,
+The Java reference solution illustrate our approach. It first computed the sum of the tips for every hour for each driver. In [`HourlyTipsSolution.java`](src/solution/java/org/apache/flink/training/solutions/hourlytips/HourlyTipsSolution.java) that looks like this,
 
 ```java
 DataStream<Tuple3<Long, Long, Float>> hourlyTips = fares
@@ -49,31 +28,6 @@ public static class AddTips extends ProcessWindowFunction<
 ```
 
 This is straightforward, but has the drawback that it is buffering all of the `TaxiFare` objects in the windows until the windows are triggered, which is less efficient than computing the sum of the tips incrementally, using a `reduce` or `agggregate` function.
-
-The [Scala solution](src/solution/scala/org/apache/flink/training/solutions/hourlytips/scala/HourlyTipsSolution.scala) uses a `reduce` function
-
-```scala
-val hourlyTips = fares
-  .map((f: TaxiFare) => (f.driverId, f.tip))
-  .keyBy(_._1)
-  .window(TumblingEventTimeWindows.of(Time.hours(1)))
-  .reduce(
-    (f1: (Long, Float), f2: (Long, Float)) => { (f1._1, f1._2 + f2._2) },
-    new WrapWithWindowInfo())
-```
-
-along with this `ProcessWindowFunction`
-
-```scala
-class WrapWithWindowInfo() extends ProcessWindowFunction[(Long, Float), (Long, Long, Float), Long, TimeWindow] {
-  override def process(key: Long, context: Context, elements: Iterable[(Long, Float)], out: Collector[(Long, Long, Float)]): Unit = {
-    val sumOfTips = elements.iterator.next()._2
-    out.collect((context.window.getEnd(), key, sumOfTips))
-  }
-}
-```
-
-to compute `hourlyTips`.
 
 Having computed `hourlyTips`, it is a good idea to take a look at what this stream looks like. `hourlyTips.print()` yields something like this,
 

@@ -1,24 +1,3 @@
-<!--
-Licensed to the Apache Software Foundation (ASF) under one
-or more contributor license agreements.  See the NOTICE file
-distributed with this work for additional information
-regarding copyright ownership.  The ASF licenses this file
-to you under the Apache License, Version 2.0 (the
-"License"); you may not use this file except in compliance
-with the License.  You may obtain a copy of the License at
-
-  http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing,
-software distributed under the License is distributed on an
-"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, either express or implied.  See the License for the
-specific language governing permissions and limitations
-under the License.
--->
-
-[中文版](./README_zh.md)
-
 # Lab: Filtering a Stream (Ride Cleansing)
 
 If you haven't already done so, you'll need to first [setup your Flink development environment](../README.md). See [How to do the Labs](../README.md#how-to-do-the-labs) for an overall introduction to these exercises.
@@ -47,7 +26,6 @@ The resulting stream should be printed to standard out.
 This exercise uses these classes:
 
 - Java:  [`org.apache.flink.training.exercises.ridecleansing.RideCleansingExercise`](src/main/java/org/apache/flink/training/exercises/ridecleansing/RideCleansingExercise.java)
-- Scala: [`org.apache.flink.training.exercises.ridecleansing.scala.RideCleansingExercise`](src/main/scala/org/apache/flink/training/exercises/ridecleansing/scala/RideCleansingExercise.scala)
 
 ### Tests
 
@@ -55,8 +33,6 @@ You will find the tests for this exercise in
 
 - Java:  [`org.apache.flink.training.exercises.ridecleansing.RideCleansingIntegrationTest`](src/test/java/org/apache/flink/training/exercises/ridecleansing/RideCleansingIntegrationTest.java)
 - Java:  [`org.apache.flink.training.exercises.ridecleansing.RideCleansingUnitTest`](src/test/java/org/apache/flink/training/exercises/ridecleansing/RideCleansingUnitTest.java)
-- Scala: [`org.apache.flink.training.exercises.ridecleansing.scala.RideCleansingIntegrationTest`](src/test/scala/org/apache/flink/training/exercises/ridecleansing/scala/RideCleansingIntegrationTest.scala)
-- Scala: [`org.apache.flink.training.exercises.ridecleansing.scala.RideCleansingUnitTest`](src/test/scala/org/apache/flink/training/exercises/ridecleansing/scala/RideCleansingUnitTest.scala)
 
 Like most of these exercises, at some point the `RideCleansingExercise` class throws an exception
 
@@ -90,7 +66,6 @@ Flink's DataStream API features a `DataStream.filter(FilterFunction)` transforma
 Reference solutions are available in this project:
 
 - Java:  [`org.apache.flink.training.solutions.ridecleansing.RideCleansingSolution`](src/solution/java/org/apache/flink/training/solutions/ridecleansing/RideCleansingSolution.java)
-- Scala: [`org.apache.flink.training.solutions.ridecleansing.scala.RideCleansingSolution`](src/solution/scala/org/apache/flink/training/solutions/ridecleansing/scala/RideCleansingSolution.scala)
 
 -----
 

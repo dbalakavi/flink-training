@@ -1,24 +1,3 @@
-<!--
-Licensed to the Apache Software Foundation (ASF) under one
-or more contributor license agreements.  See the NOTICE file
-distributed with this work for additional information
-regarding copyright ownership.  The ASF licenses this file
-to you under the Apache License, Version 2.0 (the
-"License"); you may not use this file except in compliance
-with the License.  You may obtain a copy of the License at
-
-  http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing,
-software distributed under the License is distributed on an
-"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-KIND, either express or implied.  See the License for the
-specific language governing permissions and limitations
-under the License.
--->
-
-[中文版](./README_zh.md)
-
 # Lab: Windowed Analytics (Hourly Tips)
 
 The task of the "Hourly Tips" exercise is to identify, for each hour, the driver earning the most tips. It's easiest to approach this in two steps: first use hour-long windows that compute the total tips for each driver during the hour, and then from that stream of window results, find the driver with the maximum tip total for each hour.
@@ -44,12 +23,10 @@ The resulting stream should be printed to standard out.
 ### Exercise Classes
 
 - Java:  [`org.apache.flink.training.exercises.hourlytips.HourlyTipsExercise`](src/main/java/org/apache/flink/training/exercises/hourlytips/HourlyTipsExercise.java)
-- Scala: [`org.apache.flink.training.exercises.hourlytips.scala.HourlyTipsExercise`](src/main/scala/org/apache/flink/training/exercises/hourlytips/scala/HourlyTipsExercise.scala)
 
 ### Tests
 
 - Java:  [`org.apache.flink.training.exercises.hourlytips.HourlyTipsTest`](src/test/java/org/apache/flink/training/exercises/hourlytips/HourlyTipsTest.java)
-- Scala: [`org.apache.flink.training.exercises.hourlytips.scala.HourlyTipsTest`](src/test/scala/org/apache/flink/training/exercises/hourlytips/scala/HourlyTipsTest.scala)
 
 ## Implementation Hints
 
@@ -69,7 +46,6 @@ Note that it is possible to cascade one set of time windows after another, so lo
 Reference solutions are available at GitHub:
 
 - Java:  [`org.apache.flink.training.solutions.hourlytips.HourlyTipsSolution`](src/solution/java/org/apache/flink/training/solutions/hourlytips/HourlyTipsSolution.java)
-- Scala: [`org.apache.flink.training.solutions.hourlytips.scala.HourlyTipsSolution`](src/solution/scala/org/apache/flink/training/solutions/hourlytips/scala/HourlyTipsSolution.scala)
 
 -----
 
