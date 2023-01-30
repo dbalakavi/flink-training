@@ -39,7 +39,9 @@ public class RideCleansingSolution {
     private final SourceFunction<TaxiRide> source;
     private final SinkFunction<TaxiRide> sink;
 
-    /** Creates a job using the source and sink provided. */
+    /**
+     * Creates a job using the source and sink provided.
+     */
     public RideCleansingSolution(SourceFunction<TaxiRide> source, SinkFunction<TaxiRide> sink) {
 
         this.source = source;
@@ -76,7 +78,10 @@ public class RideCleansingSolution {
         return env.execute("Taxi Ride Cleansing");
     }
 
-    /** Keep only those rides and both start and end in NYC. */
+    /**
+     * An implementation of {@link FilterFunction} that's applied to the stream of {@link TaxiRide}s, to determine what
+     * records to keep in the output stream. It keeps only those rides that both start and end in NYC.
+     */
     public static class NYCFilter implements FilterFunction<TaxiRide> {
         @Override
         public boolean filter(TaxiRide taxiRide) {

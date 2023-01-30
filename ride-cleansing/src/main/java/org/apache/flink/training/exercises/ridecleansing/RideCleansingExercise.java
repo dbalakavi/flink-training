@@ -39,7 +39,9 @@ public class RideCleansingExercise {
     private final SourceFunction<TaxiRide> source;
     private final SinkFunction<TaxiRide> sink;
 
-    /** Creates a job using the source and sink provided. */
+    /**
+     * Creates a job using the source and sink provided.
+     */
     public RideCleansingExercise(SourceFunction<TaxiRide> source, SinkFunction<TaxiRide> sink) {
 
         this.source = source;
@@ -76,7 +78,9 @@ public class RideCleansingExercise {
         return env.execute("Taxi Ride Cleansing");
     }
 
-    /** Keep only those rides and both start and end in NYC. */
+    /**
+     * Keep only those rides and both start and end in NYC.
+     */
     public static class NYCFilter implements FilterFunction<TaxiRide> {
         @Override
         public boolean filter(TaxiRide taxiRide) throws Exception {
