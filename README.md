@@ -134,7 +134,7 @@ Each of these exercises include:
 
 > **:information_source: Note:** As long as your `...Exercise` class is throwing a `MissingSolutionException`, the provided JUnit test classes will ignore that failure and verify the correctness of the solution implementation instead.
 
-You can run exercises, solutions, and tests with the `mav test` command.
+You can run exercises, solutions, and tests with the `mvn test` command.
 
 To run tests:
 
