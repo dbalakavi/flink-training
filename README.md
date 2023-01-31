@@ -43,7 +43,7 @@ This `flink-training` repository contains exercises, tests, and reference soluti
 Clone the `flink-training` repository from GitHub, navigate into the project repository, and build it:
 
 ```bash
-git clone https://github.com/apache/flink-training.git
+git clone https://github.com/dbalakavi/flink-training.git
 cd flink-training
 mvn clean install
 ```

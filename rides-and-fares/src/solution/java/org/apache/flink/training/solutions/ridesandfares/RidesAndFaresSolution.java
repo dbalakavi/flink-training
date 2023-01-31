@@ -46,7 +46,9 @@ public class RidesAndFaresSolution {
     private final SourceFunction<TaxiFare> fareSource;
     private final SinkFunction<RideAndFare> sink;
 
-    /** Creates a job using the sources and sink provided. */
+    /**
+     * Creates a job using the sources and sink provided.
+     */
     public RidesAndFaresSolution(
             SourceFunction<TaxiRide> rideSource,
             SourceFunction<TaxiFare> fareSource,
@@ -60,9 +62,9 @@ public class RidesAndFaresSolution {
     /**
      * Creates and executes the pipeline using the StreamExecutionEnvironment provided.
      *
-     * @throws Exception which occurs during job execution.
      * @param env The {StreamExecutionEnvironment}.
      * @return {JobExecutionResult}
+     * @throws Exception which occurs during job execution.
      */
     public JobExecutionResult execute(StreamExecutionEnvironment env) throws Exception {
 
@@ -84,7 +86,9 @@ public class RidesAndFaresSolution {
         return env.execute("Join Rides with Fares");
     }
 
-    /** Creates and executes the pipeline using the default StreamExecutionEnvironment. */
+    /**
+     * Creates and executes the pipeline using the default StreamExecutionEnvironment.
+     */
     public JobExecutionResult execute() throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
@@ -120,9 +124,15 @@ public class RidesAndFaresSolution {
         job.execute(env);
     }
 
-    public static class EnrichmentFunction
-            extends RichCoFlatMapFunction<TaxiRide, TaxiFare, RideAndFare> {
+    /**
+     * An implementation of {@link RichCoFlatMapFunction} to transform the two input stream types {@link TaxiRide} and
+     * {@link TaxiFare} to generate the stream of {@link RideAndFare}.
+     */
+    public static class EnrichmentFunction extends RichCoFlatMapFunction<TaxiRide, TaxiFare, RideAndFare> {
 
+        /**
+         * Holds the {@link TaxiRide} and {@link TaxiFare} state when operating across the two streams of data.
+         */
         private ValueState<TaxiRide> rideState;
         private ValueState<TaxiFare> fareState;
 
@@ -137,6 +147,10 @@ public class RidesAndFaresSolution {
                             .getState(new ValueStateDescriptor<>("saved fare", TaxiFare.class));
         }
 
+        /**
+         * If the {@link TaxiFare} is already present in the operator state for the ride, create and collect the
+         * {@link RideAndFare} with @param {@link TaxiRide}. Else, update {@link TaxiRide} in the operator state.
+         */
         @Override
         public void flatMap1(TaxiRide ride, Collector<RideAndFare> out) throws Exception {
 
@@ -149,6 +163,10 @@ public class RidesAndFaresSolution {
             }
         }
 
+        /**
+         * If the {@link TaxiRide} is already present in the operator state for the ride, create and collect the
+         * {@link RideAndFare} with @param {@link TaxiFare}. Else, update {@link TaxiFare} in the operator state.
+         */
         @Override
         public void flatMap2(TaxiFare fare, Collector<RideAndFare> out) throws Exception {
 
