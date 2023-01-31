@@ -157,7 +157,7 @@
                             </goals>
                             <configuration>
                                 <sources>
-                                    <source>src/solution</source>
+                                    <source>src/solution/java</source>
                                 </sources>
                             </configuration>
                         </execution>
